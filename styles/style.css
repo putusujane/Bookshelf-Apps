@@ -1,0 +1,236 @@
+/* Impor URL Font Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap');
+
+/* Clearing */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  color: var(--clUtama);
+  border: none;
+}
+
+h3 {
+  font-size: large;
+}
+
+/* Root */
+:root {
+  --bg: #6e7388;
+  --bgApp: #404355;
+  --clUtama: whitesmoke;
+  --clKedua: rgba(245, 245, 245, 0.5);
+}
+
+html {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  background-color: #1f1f1f;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  width: 800px;
+  height: 800px;
+  background-color: #242528;
+  border-radius: 20px;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100%;
+  padding: 20px;
+}
+
+header h1 {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+main {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  gap: 1.5rem;
+
+  /* margin-top: 1em; */
+  width: 100%;
+  height: 100%;
+  /* background-color: brown; */
+}
+
+article {
+  width: 65%;
+  padding: 20px;
+  height: 100%;
+}
+
+article h3, aside h3 {
+  padding: 5px;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 5px;
+}
+
+#formTambah {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 7px;
+
+  margin: 0 auto 2rem auto;
+  width: 80%;
+  height: 60%;
+}
+
+#formTambah input {
+  text-align: center;
+  padding: 8px;
+  padding-inline-start: 1em;
+  border-radius: 5px;
+  /* background-color: rgba(255, 255, 255, 0.4); */
+  background: transparent;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+}
+
+#formTambah input:focus {
+  outline: none;
+  background-color: #2c2d31;
+}
+
+#formTambah input:hover {
+  background-color: #2c2d31;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+#tombolTambah {
+  cursor: pointer;
+  padding: 8px;
+  margin-top: 1rem;
+  background-color: rgba(255, 255, 255, 0.4) !important;
+  border-bottom: none !important;
+  transition: 0.4s;
+}
+
+#tombolTambah:disabled {
+  cursor: auto;
+  opacity: 0.3;
+}
+
+#tombolTambah:enabled {
+  cursor: pointer;
+  opacity: 1;
+}
+
+#tombolTambah:hover {
+  background-color: var(--bg) !important;
+}
+
+#baru-ditambahkan {
+  height: 50%;
+}
+
+aside {
+  width: 35%;
+  padding: 20px;
+  overflow: hidden;
+}
+
+#cari {
+  width: 30%;
+  display: flex;
+}
+
+#cari input {
+  padding: 2px;
+  text-align: center;
+  border-radius: 5px 0 0 5px;
+  background-color: #2c2d31;
+  transition: 0.4s;
+}
+
+#cari input:focus {
+  outline: none;
+}
+
+#cari input:hover, #cari input:focus, #tombolCari:hover {
+  background-color: #2c2d31;
+}
+
+#inputCari {
+  width: 100%;
+}
+
+#tombolCari {
+  cursor: pointer;
+  padding: 3px;
+  font-size: small;
+  background-color: var(--bg);
+  border-radius: 0 5px 5px 0;
+  transition: 0.4s;
+}
+
+#belum-selesai, #sudah-selesai {
+  overflow: hidden;
+  height: 50%;
+}
+
+#sampingBelum, #sampingSelesai {
+  height: 90%;
+  overflow-y: auto;
+}
+
+#sampingBelum p {
+  font-size: small;
+}
+
+#sampingBelum h4 {
+  font-size: 1.4em;
+}
+
+footer {
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+  font-size: small;
+  background-color: #2c2d31;
+}
+
+/* ========================================== */
+#sisaKarakterJudul, #sisaKarakterPenulis, #sisaKarakterTahun {
+  visibility: hidden;
+  text-align: right;
+  font-size: x-small;
+}
+
+#random {
+  text-align: center;
+  font-size: small;
+}

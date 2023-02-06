@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <!-- Tag Meta -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=7">
+    <meta name="description" content="Submission Bookshelf Apps Dicoding by Putu Sujane">
+    <meta name="keywords" content="Bookshelf Apps, Dicoding, Putu Sujane">
+    <meta name="author" content="Putu Sujane">
+
+    <!-- Tag Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
+    <link rel="shortcut icon" href="icons/favicon.ico" type="image/x-icon">
+    <link rel="manifest" href="icons/site.webmanifest">
+
+    <!-- Tag Title -->
+    <title>RdBooks - Putu Sujane</title>
+
+    <!-- File CSS eksternal -->
+    <link rel="stylesheet" href="styles/style.css">
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <h1>RdBooks</h1>
+
+      <!-- Navigasi -->
+      <nav>
+
+      </nav>
+
+      <!-- Cari buku -->
+      <form id="cari">
+        <input id="inputCari" type="text" placeholder="Judul buku">
+        <button id="tombolCari" type="submit">Cari</button>
+      </form>
+    </header>
+
+    <!-- Main -->
+    <main>
+      <!-- Article -->
+      <article>
+        <!-- Form input tambah buku -->
+        <h3>Tambah Buku</h3>
+        <form id="formTambah">
+          <p id="sisaKarakterJudul"></p>
+          <input id="inputJudul" class="input judul" type="text" placeholder="Judul (Wajib)" maxlength="40" required>
+
+          <p id="sisaKarakterPenulis"></p>
+          <input id="inputPenulis" class="input penulis" type="text" placeholder="Penulis (Wajib)" maxlength="30" required>
+          
+          <p id="sisaKarakterTahun"></p>
+          <input id="inputTahun" class="input tahun" type="number" placeholder="Tahun (Wajib)" min="0" maxlength="4" required>
+
+          <section id="bungkusBelum">
+            <input id="cekBelum" class="cek" type="checkbox" name="Checked">
+            <label for="cekBelum">Belum selesai dibaca</label>
+          </section>
+
+          <section id="bungkusSelesai">
+            <input id="cekSelesai" class="cek" type="checkbox" name="Checked">
+            <label for="cekSelesai">Sudah Selesai dibaca</label>
+          </section>
+
+          <input id="tombolTambah" type="submit" value="Tambah" disabled></input>
+        </form>
+        <!-- Baru ditambahkan -->
+        <section id="baru-ditambahkan">
+          <h3>Baru Ditambahkan</h3>
+        </section>
+      </article>
+
+      <!-- Aside -->
+      <aside>
+        <!-- Belum selesai dibaca -->
+        <section id="belum-selesai" class="belumSelesai">
+          <h3>Belum selesai dibaca</h3>
+
+          <section id="sampingBelum"></section>
+        </section>
+
+        <!-- Sudah selesai -->
+        <section id="sudah-selesai" class="sudahSelesai">
+          <h3>Sudah selesai dibaca</h3>
+
+          <section id="sampingSelesai"></section>
+        </section>
+      </aside>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <p>Putu Sujane | &copy; 2023 RdBooks</p>
+    </footer>
+
+      <!-- File JavaScript Eksternal -->
+    <script src="scripts/script.js"></script>
+  </body>
+</html>
