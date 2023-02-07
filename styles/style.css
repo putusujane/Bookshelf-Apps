@@ -27,9 +27,9 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
+  /* overflow: hidden; */
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
   background-color: #1f1f1f;
   background-repeat: no-repeat;
   background-size: cover;
@@ -39,11 +39,12 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow: hidden;
+  /* overflow: hidden; */
   width: 800px;
-  height: 800px;
+  height: 100%;
   background-color: #242528;
   border-radius: 20px;
+  transition: 0.4s;
 }
 
 header {
@@ -69,7 +70,6 @@ main {
 
   /* margin-top: 1em; */
   width: 100%;
-  height: 100%;
   /* background-color: brown; */
 }
 
@@ -77,6 +77,7 @@ article {
   width: 65%;
   padding: 20px;
   height: 100%;
+  overflow: hidden;
 }
 
 article h3, aside h3 {
@@ -90,13 +91,13 @@ article h3, aside h3 {
 #formTambah {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   flex-wrap: wrap;
   gap: 7px;
 
-  margin: 0 auto 2rem auto;
+  margin: 0 auto 1rem auto;
   width: 80%;
-  height: 60%;
+  height: 50%;
 }
 
 #formTambah input {
@@ -132,6 +133,8 @@ input[type=number] {
 
 #tombolTambah {
   cursor: pointer;
+  width: 75%;
+  margin: 0 auto;
   padding: 8px;
   margin-top: 1rem;
   background-color: rgba(255, 255, 255, 0.4) !important;
@@ -154,7 +157,8 @@ input[type=number] {
 }
 
 #baru-ditambahkan {
-  height: 50%;
+  height: 100%;
+  overflow: auto;
 }
 
 aside {
@@ -169,7 +173,7 @@ aside {
 }
 
 #cari input {
-  padding: 2px;
+  padding: 5px;
   text-align: center;
   border-radius: 5px 0 0 5px;
   background-color: #2c2d31;
@@ -207,20 +211,28 @@ aside {
   overflow-y: auto;
 }
 
-#sampingBelum p {
-  font-size: small;
+#sampingBelum p, #sampingSelesai p, #bungkusBaruDitambahkan p {
+  font-size: x-small;
+  opacity: 0.6;
 }
 
-#sampingBelum h4 {
-  font-size: 1.4em;
+#sampingBelum h4, #sampingSelesai h4, #bungkusBaruDitambahkan h4 {
+  font-size: 1.1em;
+}
+
+#sampingBelum h5, #sampingSelesai h5, #bungkusBaruDitambahkan h5 {
+  font-size: small;
+  opacity: 0.6;
 }
 
 footer {
+  overflow: hidden;
   width: 100%;
   text-align: center;
   padding: 10px;
   font-size: small;
   background-color: #2c2d31;
+  border-radius: 0 0 20px 20px;
 }
 
 /* ========================================== */
@@ -233,4 +245,115 @@ footer {
 #random {
   text-align: center;
   font-size: small;
+}
+
+.tombol-ceklist i, .tombol-undo i, .tombol-sampah i {
+  cursor: pointer;
+  font-size: larger;
+  color: rgba(255, 255, 255, 0.6);
+  transition: 0.4s;
+}
+
+.tombol-ceklist i:hover {
+  color: green;
+}
+
+.tombol-undo i:hover {
+  color: salmon;
+}
+
+.tombol-sampah i:hover {
+  color: brown;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 10px;
+  padding: 5px;
+  background-color: rgba(64, 67, 85, 0.4);
+  border-radius: 8px;
+  transition: 0.4s;
+}
+
+.item:hover {
+  filter: contrast(0.8);
+}
+
+/* Ukuran tiap buku Baru Ditambahkan */
+
+#bungkusUndoSampah {
+  display: flex;
+  gap: 10px;
+}
+
+#bungkusBaruDitambahkan {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 10px;
+  overflow: auto;
+  width: 100%;
+  transition: 0.4s;
+}
+
+#bungkusBaruDitambahkan .item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  overflow: hidden;
+  width: 45%;
+}
+
+/* ========================================= */
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  transition: 0.4s;
+}
+
+/* Modal Content */
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: rgba(64, 67, 85, 0.9);
+  margin: 0 auto;
+  padding: 20px;
+  width: 80%;
+  border-radius: 10px;
+  transition: 0.4s;
+}
+
+.modal-content h3 {
+  text-align: center;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  transition: 0.4s;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
 }

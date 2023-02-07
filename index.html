@@ -22,8 +22,29 @@
 
     <!-- File CSS eksternal -->
     <link rel="stylesheet" href="styles/style.css">
+
+    <!-- CSS Responsive (Media Queries) -->
+    <link rel="stylesheet" href="styles/media-queries.css">
+
+    <!-- Link URL Font Awesome (Icon) -->
+    <script src="https://kit.fontawesome.com/74548f8aa8.js" crossorigin="anonymous"></script>
   </head>
   <body>
+
+    <!-- Modal Pencarian -->
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+      <!-- Modal content -->
+      <div class="modal-content">
+        <h3>Buku Ditemukan!</h3>
+        <section>
+          <span class="close" title="Tutup">&times;</span>
+        </section>
+      </div>
+
+    </div>
+
     <!-- Header -->
     <header>
       <h1>RdBooks</h1>
@@ -71,6 +92,8 @@
         <!-- Baru ditambahkan -->
         <section id="baru-ditambahkan">
           <h3>Baru Ditambahkan</h3>
+
+          <section id="bungkusBaruDitambahkan"></section>
         </section>
       </article>
 
@@ -96,6 +119,10 @@
     <footer>
       <p>Putu Sujane | &copy; 2023 RdBooks</p>
     </footer>
+
+    <section id="bungkusHasilCari">
+      
+    </section>
 
       <!-- File JavaScript Eksternal -->
     <script src="scripts/script.js"></script>

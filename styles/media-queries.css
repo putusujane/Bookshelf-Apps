@@ -1,0 +1,98 @@
+/* Media Queries */
+@media screen and (max-width: 533px) {
+
+  html {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  body {
+    justify-content: center;
+    width: 100%;
+    padding: 5px;
+    border-radius: 0;
+  }
+  #cari {
+    width: 50%;
+  }
+  
+  main {
+    flex-direction: column;
+    justify-content: center;
+    gap: 2em;
+    width: 100%;
+    margin: 0;
+  }
+
+  header, article, aside, footer {
+    padding: 5px;
+  }
+
+  article {
+    width: 100%;
+    margin: 0;
+  }
+
+  article h3, aside h3 {
+    margin-top: 4em;
+  }
+
+  #formTambah {
+    width: 100%;
+    margin-bottom: 1em;
+  }
+
+  aside {
+    width: 100%;
+  }
+
+  #bungkusBaruDitambahkan {
+    justify-content: center;
+    gap: 2px;
+  }
+
+  #bungkusBaruDitambahkan .item {
+    width: 96%;
+  }
+
+  #belum-selesai, #sudah-selesai {
+    height: auto;
+  }
+
+  #sampingBelum, #sampingSelesai {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+  }
+
+  #sampingBelum .item, #sampingSelesai .item {
+    width: 96%;
+  }
+
+  .item {
+    margin-bottom: 6px;
+  }
+
+  footer {
+    margin-top: 2em;
+    border-radius: 0;
+  }
+
+  .modal-content {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  header {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  #cari {
+    width: 100%;
+  }
+}

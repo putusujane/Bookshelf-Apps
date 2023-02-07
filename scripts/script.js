@@ -1,66 +1,55 @@
-// /* eslint-disable no-unused-expressions */
-// // eslint-disable-next-line max-classes-per-file
-// class Bookshelf {
-//   constructor() {
-//     // Property
-//     this.id = +new Date();
+const SAVED_EVENT = 'saved_book';
+const KUNCI_STORAGE = 'RD_BOOKS';
 
-//     this.title = document.querySelector('#inputJudul').value;
-//     this.author = document.querySelector('#inputPenulis').value;
-//     this.year = Number(document.querySelector('#inputTahun').value);
-//     this.isComplete = this.pilihChecklist;
+// Array books
+const books = [];
+// Render Event
+const RENDER_EVENT = 'render_book';
 
-//     this.bisaStorage = typeof (Storage) !== 'undefined';
+// Memeriksa jika support Storage
+window.addEventListener('load', () => {
+  if (typeof (Storage) !== 'undefined') {
+    document.addEventListener(SAVED_EVENT, () => {
+    });
+  } else {
+    // eslint-disable-next-line no-alert
+    alert('Browser anda tidak mendukung Web Storage');
+    return false;
+  }
 
-//     this.kunciS = 'RdBooks';
+  return true;
+});
 
-//     this.qSelector = (elemen) => document.querySelector(elemen);
-//     this.qSelectAll = (elemen) => document.querySelectorAll(elemen);
-//   }
+// Fungsi saveData
+const saveData = () => {
+  const parsed = JSON.stringify(books);
+  localStorage.setItem(KUNCI_STORAGE, parsed);
+  document.dispatchEvent(new Event(SAVED_EVENT));
+};
 
-//   // Method hapus form
-//   clearForm() {
-//     const x = document.querySelectorAll('.input');
-//     for (let i = 0; i < x.length; i += 1) {
-//       x[i].value = '';
-//     }
-//   }
+// Fungsi loadDataFromStorage
+const loadDataFromStorage = () => {
+  const serializedData = localStorage.getItem(KUNCI_STORAGE);
+  const data = JSON.parse(serializedData);
 
-// Method kondisi centang checklist
-// }
-// =================================================================
+  if (data !== null) {
+    for (let i = 0; i < data.length; i += 1) {
+      books.push(data[i]);
+    }
+  }
 
-// let books = [];
+  document.dispatchEvent(new Event(RENDER_EVENT));
+};
 
-// const rdBooks = (event) => {
-//   event.preventDefault();
-
-//   const inputJudul = document.getElementById('inputJudul');
-
-// };
-
-// Menampilkan Isi Form ke dokumen web
-// const submitAction = document.getElementById('formTambah');
-
-// submitAction.addEventListener('submit', (event) => {
-//   const inputTitle = document.getElementById('inputJudul').value;
-//   const inputAuthor = document.getElementById('inputPenulis').value;
-//   const inputYear = document.getElementById('inputTahun').value;
-
-//   const hiddenMessage = document.createElement('p');
-//   hiddenMessage.innerHTML = `Judul: ${inputTitle}, Penulis: ${inputAuthor}, Tahun: ${inputYear}`;
-//   document.getElementById('formTambah').append(hiddenMessage);
-
-//   event.preventDefault();
-// });
+// Input judul dan elemen teks sisa karakter
+const on = document.querySelectorAll('#inputJudul, #inputPenulis, #inputTahun');
+const sisaKarakter = document.querySelectorAll('#sisaKarakterJudul, #sisaKarakterPenulis, #sisaKarakterTahun');
+const tombolTambah = document.getElementById('tombolTambah');
+const formTambah = document.getElementById('formTambah');
 
 // Event pada form input
 document.addEventListener('DOMContentLoaded', () => {
-  // Input judul dan elemen teks sisa karakter
-  const on = document.querySelectorAll('#inputJudul, #inputPenulis, #inputTahun');
-  const sisaKarakter = document.querySelectorAll('#sisaKarakterJudul, #sisaKarakterPenulis, #sisaKarakterTahun');
-  const tombolTambah = document.getElementById('tombolTambah');
-  const formTambah = document.getElementById('formTambah');
+  loadDataFromStorage();
 
   // Perulangan event listener input
   for (let i = 0; i < on.length; i += 1) {
@@ -97,134 +86,297 @@ document.addEventListener('DOMContentLoaded', () => {
     on[i].addEventListener('focus', () => {
       sisaKarakter[i].style.visibility = 'visible';
     });
-
-    // onChange
-    // formTambah.addEventListener('submit', () => {
-    //   on[i].value = null;
-    // });
   }
 
   document.getElementById('cekBelum').checked = true;
   document.getElementById('cekSelesai').checked = false;
+});
 
-  const cekBelum = document.getElementById('cekBelum');
-  const cekSelesai = document.getElementById('cekSelesai');
+const cekBelum = document.getElementById('cekBelum');
+const cekSelesai = document.getElementById('cekSelesai');
 
-  const cek = () => {
-    document.getElementById('cekBelum').addEventListener('change', () => {
-      if (cekBelum.checked) {
-        document.getElementById('cekSelesai').checked = false;
-      }
-    });
-
-    document.getElementById('cekSelesai').addEventListener('change', () => {
-      if (cekSelesai.checked) {
-        document.getElementById('cekBelum').checked = false;
-      }
-    });
-  };
-
-  cek();
-
-  // OnChange
-  // document.getElementById('inputTahun').addEventListener('change', () => {
-  //   console.log('Tombol aktif');
-
-  //   const inputTahun = document.getElementById('inputTahun').value;
-  //   const tombolTambah = document.getElementById('tombolTambah');
-
-  //   if (inputTahun.length === 4) {
-  //     tombolTambah.removeAttribute('disabled');
-  //   } else {
-  //     tombolTambah.setAttribute('disabled', '');
-  //   }
-  // });
-
-  // document.getElementById('formTambah').addEventListener('submit', (event) => {
-  //   const inputTahun = document.getElementById('inputTahun').value;
-
-  //   if (inputTahun.length === 4) {
-  //     alert('Tombol aktif!');
-  //   } else {
-  //     alert('Panjang input tahun tidak terpenuhi');
-  //     document.getElementById('tombolTambah').setAttribute('disabled', '');
-  //   }
-
-  //   event.preventDefault();
-  // });
-
-  // ===========================================================
-
-  // Array books
-  const books = [];
-  // Render Event
-  const RENDER_EVENT = 'render_book';
-
-  // Fungsi makeBook
-
-  // Fungsi generateBookObject
-  const generateBookObject = (id, title, author, year, isComplete) => ({
-    id,
-    title,
-    author,
-    year,
-    isComplete,
-  });
-
-  // Fungsi tambahBuku
-  const tambahBuku = () => {
-    const generateID = +new Date();
-    const title = on[0].value;
-    const author = on[1].value;
-    const year = on[2].value;
-    const isComplete = !cekBelum.checked;
-
-    const bookObject = generateBookObject(generateID, title, author, year, isComplete);
-
-    books.push(bookObject);
-
-    document.dispatchEvent(new Event(RENDER_EVENT));
-  };
-
-  // Fungsi makeBook(bookObject)
-  const makeBook = (bookObject) => {
-    const textJudul = document.createElement('h4');
-    textJudul.innerText = bookObject.title;
-
-    const textPenulis = document.createElement('h5');
-    textPenulis.innerText = bookObject.author;
-
-    const textTahun = document.createElement('p');
-    textTahun.innerText = bookObject.year;
-
-    const textBungkus = document.createElement('section');
-    textBungkus.classList.add('inner');
-    textBungkus.append(textJudul, textPenulis, textTahun);
-
-    const bungkus = document.createElement('section');
-    bungkus.classList.add('item', 'shadow');
-    bungkus.append(textBungkus);
-    bungkus.setAttribute('id', `book-${bookObject.id}`);
-
-    return bungkus;
-  };
-
-  formTambah.addEventListener('submit', (event) => {
-    event.preventDefault();
-
-    tambahBuku();
-  });
-
-  // Listener RENDER_EVENT
-  document.addEventListener(RENDER_EVENT, () => {
-    console.log(books);
-
-    const bukuBelumSelesaiDibaca = document.getElementById('sampingBelum');
-    bukuBelumSelesaiDibaca.innerHTML = '';
-
-    for (let i = 0; i < books.length; i += 1) {
-      const bookElement = makeBook(books[i]);
-      bukuBelumSelesaiDibaca.append(bookElement);
+const cek = () => {
+  document.getElementById('cekBelum').addEventListener('change', () => {
+    if (cekBelum.checked) {
+      document.getElementById('cekSelesai').checked = false;
     }
   });
+
+  document.getElementById('cekSelesai').addEventListener('change', () => {
+    if (cekSelesai.checked) {
+      document.getElementById('cekBelum').checked = false;
+    }
+  });
+};
+
+cek();
+
+// ===========================================================
+
+// Fungsi generateBookObject
+const generateBookObject = (id, title, author, year, isComplete) => ({
+  id,
+  title,
+  author,
+  year,
+  isComplete,
+});
+
+// Fungsi tambahBuku
+const tambahBuku = () => {
+  const generateID = `${on[0].value.slice(0, 2)}-${new Date().getFullYear()}${new Date().getMilliseconds()}`;
+  const title = on[0].value;
+  const author = on[1].value;
+  const year = on[2].value;
+  const isComplete = !cekBelum.checked;
+
+  const bookObject = generateBookObject(generateID, title, author, year, isComplete);
+
+  books.push(bookObject);
+
+  document.dispatchEvent(new Event(RENDER_EVENT));
+
+  // saveData
+  saveData();
+};
+
+// Fungsi cariBook
+const cariBook = (idBuku) => {
+  for (let i = 0; i < books.length; i += 1) {
+    if (books[i].id === idBuku) {
+      return books[i];
+    }
+  }
+  return null;
+};
+
+// Fungsi TambahBukuKeComplete
+const tambahBukuKeComplete = (idBuku) => {
+  const bookTarget = cariBook(idBuku);
+
+  if (bookTarget == null) {
+    return;
+  }
+
+  bookTarget.isComplete = true;
+  document.dispatchEvent(new Event(RENDER_EVENT));
+
+  // saveData
+  saveData();
+};
+
+// Fungsi cariBookIndex(idBuku)
+const cariBookIndex = (idBuku) => {
+  for (let i = 0; i < books.length; i += 1) {
+    if (books[i].id === idBuku) {
+      return books;
+    }
+  }
+
+  return -1;
+};
+
+// Fungsi hapusBukuDariComplete
+const hapusBukuDariComplete = (idBuku) => {
+  const bookTarget = cariBookIndex(idBuku);
+
+  if (bookTarget === -1) {
+    return;
+  }
+
+  books.splice(bookTarget, 1);
+  document.dispatchEvent(new Event(RENDER_EVENT));
+
+  // saveData
+  saveData();
+};
+
+// Fungsi undoBukuDariComplete
+const undoBukuDariComplete = (idBuku) => {
+  const bookTarget = cariBook(idBuku);
+
+  if (bookTarget === null) {
+    return;
+  }
+
+  bookTarget.isComplete = false;
+  document.dispatchEvent(new Event(RENDER_EVENT));
+
+  // saveData
+  saveData();
+};
+
+// Fungsi makeBook(bookObject)
+const makeBook = (bookObject) => {
+  const textJudul = document.createElement('h4');
+  textJudul.innerText = bookObject.title;
+
+  const textPenulis = document.createElement('h5');
+  textPenulis.innerText = bookObject.author;
+
+  const textTahun = document.createElement('p');
+  textTahun.innerText = bookObject.year;
+
+  const textBungkus = document.createElement('section');
+  textBungkus.classList.add('inner');
+  textBungkus.append(textJudul, textPenulis, textTahun);
+
+  const bungkus = document.createElement('section');
+  bungkus.classList.add('item', 'shadow');
+  bungkus.append(textBungkus);
+  bungkus.setAttribute('id', `${bookObject.id}`);
+
+  // Kondisi isComplete
+  if (bookObject.isComplete) {
+    const tombolUndo = document.createElement('section');
+    tombolUndo.classList.add('tombol-undo');
+    tombolUndo.innerHTML = '<i class="fa-solid fa-rotate-left"></i>';
+    tombolUndo.setAttribute('title', 'Tandai belum selesai dibaca');
+
+    tombolUndo.addEventListener('click', () => {
+      undoBukuDariComplete(bookObject.id);
+    });
+
+    const tombolSampah = document.createElement('section');
+    tombolSampah.classList.add('tombol-sampah');
+    tombolSampah.innerHTML = '<i class="fa-solid fa-square-minus"></i>';
+    tombolSampah.setAttribute('title', 'Hapus buku');
+
+    const bungkusUndoSampah = document.createElement('section');
+    bungkusUndoSampah.setAttribute('id', 'bungkusUndoSampah');
+    bungkusUndoSampah.append(tombolSampah, tombolUndo);
+
+    tombolSampah.addEventListener('click', () => {
+      // eslint-disable-next-line no-restricted-globals, no-alert
+      const konfirmasi = confirm('Apakah yakin ingin menghapus?');
+      if (konfirmasi) {
+        hapusBukuDariComplete(bookObject.id);
+      }
+      return false;
+    });
+
+    bungkus.append(bungkusUndoSampah);
+
+    bungkus.style.background = '-webkit-linear-gradient(to right, rgba(68, 160, 141, 0.5), rgba(9, 54, 55, 0.8))';
+    bungkus.style.background = 'linear-gradient(to right, rgba(68, 160, 141, 0.5), rgba(9, 54, 55, 0.8))';
+  } else {
+    const tombolSampah = document.createElement('section');
+    tombolSampah.classList.add('tombol-sampah');
+    tombolSampah.innerHTML = '<i class="fa-solid fa-square-minus"></i>';
+    tombolSampah.setAttribute('title', 'Hapus buku');
+
+    tombolSampah.addEventListener('click', () => {
+      // eslint-disable-next-line no-restricted-globals, no-alert
+      const konfirmasi = confirm('Apakah yakin ingin menghapus?');
+      if (konfirmasi) {
+        hapusBukuDariComplete(bookObject.id);
+      }
+      return false;
+    });
+
+    const tombolCeklist = document.createElement('section');
+    tombolCeklist.classList.add('tombol-ceklist');
+    tombolCeklist.innerHTML = '<i class="fa-solid fa-square-check"></i>';
+    tombolCeklist.setAttribute('title', 'Tandai selesai dibaca');
+
+    const bungkusUndoSampah = document.createElement('section');
+    bungkusUndoSampah.setAttribute('id', 'bungkusUndoSampah');
+    bungkusUndoSampah.append(tombolSampah, tombolCeklist);
+
+    tombolCeklist.addEventListener('click', () => {
+      tambahBukuKeComplete(bookObject.id);
+    });
+
+    bungkus.append(bungkusUndoSampah);
+    bungkus.style.background = '-webkit-linear-gradient(to right, rgba(5, 117, 230, 0.8), rgba(2, 27, 121, 0.8))';
+    bungkus.style.background = 'linear-gradient(to right, rgba(5, 117, 230, 0.8), rgba(2, 27, 121, 0.8))';
+  }
+
+  return bungkus;
+};
+
+formTambah.addEventListener('submit', (event) => {
+  event.preventDefault();
+  tambahBuku();
+  // eslint-disable-next-line no-alert
+  alert('Buku berhasil disimpan!');
+
+  on[0].value = '';
+  on[1].value = '';
+  on[2].value = '';
+});
+
+const searchBooks = () => {
+  const searchInput = document.querySelector('#inputCari').value.toLowerCase();
+
+  const filteredBooks = books.filter((book) => book.title.toLowerCase().includes(searchInput));
+
+  if (searchInput !== null) {
+    const modal = document.getElementById('myModal');
+    modal.style.display = 'block';
+
+    const kontenModal = document.querySelector('.modal-content');
+    kontenModal.innerHTML = '<span style="float: right;" class="close" title="Tutup">&times;</span>';
+
+    const spanModal = document.querySelector('.close');
+
+    if (spanModal !== null) {
+      spanModal.addEventListener('click', () => {
+        modal.style.display = 'none';
+      });
+    }
+
+    window.addEventListener('click', (event) => {
+      if (event.target === modal) {
+        modal.style.display = 'none';
+      }
+    });
+
+    for (let i = 0; i < filteredBooks.length; i += 1) {
+      kontenModal.append(makeBook(filteredBooks[i]));
+    }
+  }
+
+  if (null) {
+    document.querySelector('#searchInput').value = '';
+  }
+};
+
+const formCari = document.getElementById('cari');
+formCari.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const searchInput = document.querySelector('#inputCari').value.toLowerCase();
+  if (searchInput === '') {
+    alert('Judul tidak boleh kosong!');
+    return;
+  }
+  searchBooks();
+  document.querySelector('#inputCari').value = '';
+});
+
+// Listener RENDER_EVENT
+document.addEventListener(RENDER_EVENT, () => {
+  const bukuBaruDitambahkan = document.getElementById('bungkusBaruDitambahkan');
+  bukuBaruDitambahkan.innerHTML = '';
+  for (let i = 0; i < books.length; i += 1) {
+    const bookElement = makeBook(books[i]);
+
+    bukuBaruDitambahkan.append(bookElement);
+  }
+
+  const bukuBelumSelesaiDibaca = document.getElementById('sampingBelum');
+  bukuBelumSelesaiDibaca.innerHTML = '';
+
+  const bukuSudahSelesaiDibaca = document.getElementById('sampingSelesai');
+  bukuSudahSelesaiDibaca.innerHTML = '';
+
+  for (let i = 0; i < books.length; i += 1) {
+    const bookElement = makeBook(books[i]);
+
+    if (!books[i].isComplete) {
+      bukuBelumSelesaiDibaca.append(bookElement);
+    } else {
+      bukuSudahSelesaiDibaca.append(bookElement);
+    }
+  }
 });
