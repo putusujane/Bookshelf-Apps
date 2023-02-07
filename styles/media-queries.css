@@ -25,6 +25,15 @@
     margin: 0;
   }
 
+  header {
+    padding: 0 0 5px 0;
+    position: sticky;
+    top: 0;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.3);
+    width: 100%;
+    background-color: rgba(36, 37, 40, 0.9);
+  }
+
   header, article, aside, footer {
     padding: 5px;
   }

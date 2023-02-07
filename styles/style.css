@@ -357,3 +357,7 @@ footer {
   text-decoration: none;
   cursor: pointer;
 }
+
+article h3 i, aside h3 i {
+  margin-right: 8px;
+}
